@@ -1,0 +1,321 @@
+/* Fullscreen background video */
+#castle, #hall {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 100vh;
+    width: 100vw;
+    object-fit: cover;
+    z-index: -1;
+    background-color: black;
+}
+
+#hall {
+    display: none;
+}
+
+/* First Modal */
+.modal8 {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    padding-top: 110px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(20, 24, 39, 0.83); /* blue-black overlay */
+    backdrop-filter: blur(8px) brightness(0.80);
+}
+
+#modal-content8 {
+    position: relative;
+    margin: auto;
+    padding: 48px 60px 38px 60px;
+    width: 47%;
+    max-width: 700px;
+    background: rgba(24, 25, 48, 0.82); /* true glassmorphic effect */
+    border-radius: 22px;
+    border: 1.5px solid #77b6ff;        /* Soft cyan accent */
+    box-shadow:
+        0 0 56px 3px #76b4fb,
+        0 0 0 8px rgba(119,182,255,0.11) inset,
+        0 8px 32px 1px #0d1637a9;
+    font-family: 'Cinzel', 'Georgia', serif;
+    font-weight: bold;
+    text-align: center;
+    color: #e0e6ee;
+    backdrop-filter: blur(15px) saturate(1.23);
+    animation: modalPop 0.4s ease forwards;
+}
+
+/* Modal Title */
+#modal-content8 h1 {
+    font-size: 2.2rem;
+    margin-bottom: 18px;
+    color: #e6eef7;
+    letter-spacing: 1.5px;
+    text-shadow:
+        0 2px 18px #33badc,
+        0 0 28px #384186,
+        0 0 38px #fff;
+}
+
+/* Modal Subtitle */
+#modal-content8 p {
+    font-size: 1.2rem;
+    color: #b1e6f8;
+    text-shadow:
+        0 1px 10px #457f95,
+        0 0 18px #a6f3fe99;
+    margin-bottom: 0;
+}
+
+/* Close Button */
+#close8 {
+    position: absolute;
+    cursor: pointer;
+    right: 18px;
+    top: 16px;
+    font-size: 30px;
+    font-weight: bold;
+    color: #b0dbff;
+    background: transparent;
+    border: none;
+    transition: color 0.3s, transform 0.2s;
+    text-shadow: 0 0 12px #b0dbff;
+}
+#close8:hover {
+    color: #fff;
+    text-shadow: 0 0 30px #a3cdff;
+    transform: scale(1.09) rotate(10deg);
+}
+
+@keyframes modalPop {
+    0% {
+        opacity: 0;
+        transform: scale(0.7);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Buttons (Enter Castle, Houses) */
+.enter-castle {
+    display: none;
+    height: 400px;
+    cursor: pointer;
+    position: absolute;
+    top: 15%; /* adjust slightly as needed */
+    left: 53.5%; /* adjust for perfect center over middle tower */
+    transform: translate(-50%, 0);
+    font-family: 'Cinzel', 'Georgia', serif;
+    font-weight: bold;
+    text-align: center;
+    z-index: 200;
+    width: max-content;
+}
+.enter-castle p {
+    margin: 0 0 8px 0;
+    font-size: 2.1em;
+    color: #e6f0ff;  /* Icy soft blue */
+    text-shadow:
+        0 0 20px #7faaff,
+        0 0 36px #4884b8,
+        0 0 40px #fff;
+    letter-spacing: 1px;
+}
+.enter-castle .arrow-down {
+    margin: 0 auto;
+    width: 0;
+    height: 0;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-top: 22px solid #e6f0ff;
+    filter: drop-shadow(0 0 10px #7faaff) drop-shadow(0 0 16px #4193e7);
+    animation: bounce 1.2s infinite;
+}
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+
+/* Wand Styling and Centering */
+.spell {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 3000;
+    width: auto;
+}
+
+.spell p {
+    margin: 0 0 18px;
+    font-size: 2em;
+    color: #2ba8ad; /* Soft neon cyan */
+    text-shadow:
+        0 0 18px #00fff7,
+        0 0 38px #39FF14,
+        0 0 55px #007766;
+    font-family: 'Cinzel', 'Georgia', serif;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Adjusted Arrow pointing to wand with matching colors */
+.spell .arrow-up {
+    margin: 40px auto 8px;
+    width: 0;
+    height: 0;
+    border-left: 16px solid transparent;
+    border-right: 16px solid transparent;
+    border-bottom: 24px solid #2ba8ad; /* Same neon cyan as text */
+    filter: drop-shadow(0 0 12px #00fff7);
+    animation: bounce 1.2s infinite;
+}
+
+#wand {
+    width: 140px;
+    filter: drop-shadow(0 0 25px #7afcf8)
+            drop-shadow(0 0 35px #39FF14)
+            drop-shadow(0 0 45px #00fff7);
+    transition: transform 0.3s ease;
+}
+
+#wand:hover {
+    cursor: pointer;
+    transform: scale(1.1) rotate(-5deg);
+    filter: drop-shadow(0 0 42px #00fff7)
+            drop-shadow(0 0 55px #39FF14)
+            drop-shadow(0 0 65px #7afcf8);
+}
+
+.modal9 {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(12, 5, 1, 0.9); /* near black with high opacity */
+    backdrop-filter: blur(5px);
+    overflow: auto;
+}
+
+#modal-content9 {
+    position: relative;
+    margin: auto;
+    padding: 40px 50px;
+    width: 30%;
+    max-width: 680px;
+    background: linear-gradient(135deg, #332a13 0%, #7e6d2c 100%);
+    background-image:
+      url('https://www.transparenttextures.com/patterns/pw-maze-white.png'); /* Subtle parchment texture */
+    border: 4px solid #bfa84e;
+    border-radius: 20px;
+    box-shadow:
+        0 0 25px rgba(191, 168, 78, 0.9),
+        0 0 40px rgba(94, 79, 45, 0.6) inset,
+        0 16px 30px rgba(0, 0, 0, 0.8);
+    font-family: 'Cinzel', 'Georgia', serif;
+    font-weight: bold;
+    text-align: center;
+    color: #f4e1a1; /* Pale golden parchment text */
+    text-shadow:
+      1px 1px 0 #4f4325,
+      2px 2px 6px #d1c47a,
+      0 0 16px #d1c47a;
+    letter-spacing: 1.6px;
+    animation: modalPop 0.5s ease forwards;
+}
+
+#modal-content9 h1 {
+    font-size: 2.7rem;
+    font-weight: 900;
+    margin-bottom: 20px;
+    color: #f7e6a6;
+    text-shadow:
+      2px 2px 5px #a7851b,
+      0 0 15px #eedf7a;
+}
+
+#modal-content9 p {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #fff4bc;
+    text-shadow:
+      1px 1px 3px #725e1a,
+      0 0 12px #ffef9b;
+    margin-top: 0;
+}
+
+#close9 {
+    position: absolute;
+    right: 22px;
+    top: 22px;
+    font-size: 32px;
+    font-weight: 700;
+    color: #bfa84e;
+    cursor: pointer;
+    transition: color 0.4s ease, transform 0.3s ease;
+    text-shadow: 1px 1px 2px #3a2e00;
+}
+
+#close9:hover {
+    color: #fff9b1;
+    transform: scale(1.25) rotate(20deg);
+    text-shadow: 0 0 25px #fff9b1;
+}
+
+
+
+.enter-houses {
+    display: none;
+    position: absolute;
+    /* Position centered above the hat; adjust 'top' and 'left' as needed */
+    top: 60%;
+    left: 53%;
+    transform: translate(-50%, 0);
+    height: 300px;
+    cursor: pointer;
+    font-family: 'Cinzel', 'Georgia', serif;
+    font-weight: bold;
+    text-align: center;
+    letter-spacing: 1px;
+    z-index: 200;
+    width: max-content;
+}
+
+.enter-houses p {
+    margin: 0 0 10px 0;
+    font-size: 2.2em;
+    /* Warm gold/amber with soft glow, harmonizes with your feast-hall background */
+    color: #e0bf3f;
+    text-shadow:
+        0 0 12px #ffb347,
+        0 0 24px #a17c1b,
+        0 0 50px #ffedb0;
+}
+
+.enter-houses .arrow-down {
+    margin: 0 auto;
+    width: 0;
+    height: 0;
+    border-left: 18px solid transparent;
+    border-right: 18px solid transparent;
+    border-top: 28px solid #e0bf3f;
+    filter: drop-shadow(0 0 12px #ffb347);
+    animation: bounce 1.2s infinite;
+}
+

@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Dancing Script', cursive;
+    background-color: #121212;
+    overflow-y: auto;
+    height: 100vh;
+}
+
+.wrapper {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+/* Envelope */
+.envelope-container {
+    position: relative;
+    width: 500px;
+    height: 270px;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#envelope-img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    border-radius: 8px;
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+    animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: scale(0.5); }
+    50% { transform: scale(1.1); }
+}
+
+/* UNFOLDING effect for envelope-to-letter */
+
+.unfolding {
+    animation: unfoldAnim 1s forwards;
+}
+
+@keyframes unfoldAnim {
+    0% {
+        transform: rotateX(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: rotateX(90deg);
+        opacity: 0;
+    }
+}
+
+/* Letter */
+#letter-container {
+    display: none;
+    justify-content: center;
+    align-items: flex-start;
+    background: url('https://res.cloudinary.com/dd4ldehqo/image/upload/v1753521362/letter_r3p5xm.jpg') no-repeat center center;
+    background-size: cover;
+    width: 700px;
+    height: 1310px;
+    padding: 250px 100px 100px; /* Push down text further */
+    color: #2b1700;
+    font-size: 26px;
+    line-height: 1.1;
+    box-shadow: 0 0 40px rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    position: relative;
+    z-index: 5;
+    transform: scale(0.6);
+    opacity: 0;
+    transition: transform 1s ease, opacity 1s ease;
+}
+
+#letter-container.show {
+    animation: display 1s forwards;
+}
+
+@keyframes display {
+    0% {
+        transform: scale(1.2) rotateX(90deg);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1) rotateX(0deg);
+        opacity: 1;
+    }
+}
+
+/* Scroll inside */
+#letter-scroll {
+    max-height: 100%;
+    width: 100%;
+}
+
+#letter-text {
+    max-width: 90%;
+    margin: 135px auto;
+    white-space: pre-line;
+}
+
+#letter-text a {
+    display: inline-block;
+    font-size: 26px;
+    color: #4b2e06;
+    text-decoration: none;
+    font-weight: bold;
+    font-style: italic;
+    padding: 10px 25px;
+    border: 2px solid #4b2e06;
+    border-radius: 8px;
+    background: rgba(255, 248, 220, 0.5);
+    transition: all 0.3s ease;
+}
+
+#letter-text a:hover {
+    background: rgba(75, 46, 6, 0.8);
+    color: #fff8dc;
+    transform: scale(1.05);
+}
