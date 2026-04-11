@@ -2,7 +2,7 @@
 
 A cinematic, full-stack web experience inspired by the magical world of Harry Potter.
 
-The-Wizarding-Opus is a dynamic Laravel-based web application featuring an immersive journey through the wizarding world — from Platform 9¾ to Hogwarts — with interactive sorcerer archives, a magical quiz, cinematic video transitions, and session-based authentication.
+The Wizarding Opus is a dynamic Laravel-based web application featuring an immersive journey through the wizarding world — from Platform 9¾ to Hogwarts — with interactive sorcerer archives, a magical quiz, cinematic video transitions, and session-based authentication.
 
 ---
 
