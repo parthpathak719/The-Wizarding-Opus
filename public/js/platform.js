@@ -50,12 +50,9 @@ gothrough.addEventListener('click', function() {
     sound.play();
     gothrough.style.display = 'none';
 
-    const canvas = document.createElement('canvas');
-    canvas.width = wallVideo.videoWidth;
-    canvas.height = wallVideo.videoHeight;
-    const ctx = canvas.getContext('2d');
-    ctx.drawImage(wallVideo, 0, 0, canvas.width, canvas.height);
-    const frameUrl = canvas.toDataURL();
+    // Bunny Stream provides thumbnails at this URL — no CORS issue
+    const videoId = 'd46f4e5b-7743-40dd-99ed-14f661bff17d';
+    const thumbnailUrl = `https://vz-4ff4d85b-386.b-cdn.net/${videoId}/thumbnail.jpg`;
 
     const zoomDiv = document.createElement('div');
     zoomDiv.style.cssText = `
@@ -64,7 +61,7 @@ gothrough.addEventListener('click', function() {
         left: 0;
         width: 100vw;
         height: 100vh;
-        background: url(${frameUrl}) center center / contain no-repeat;
+        background: url(${thumbnailUrl}) center center / contain no-repeat;
         background-color: black;
         z-index: 999;
         transform: scale(1);
@@ -72,7 +69,6 @@ gothrough.addEventListener('click', function() {
         animation: zoomRun 2.2s ease-in forwards;
     `;
 
-    // Append BEFORE hiding the video — no visual gap
     document.body.appendChild(zoomDiv);
     wallVideo.style.display = 'none';
 
