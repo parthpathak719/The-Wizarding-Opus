@@ -18,12 +18,6 @@ COPY . .
 
 RUN composer install --no-dev --optimize-autoloader
 
-# Install Node and compile assets
-RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash -
-RUN apt-get install -y nodejs
-RUN npm install
-RUN npm run build
-
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 
 RUN echo '<VirtualHost *:80>\n\
@@ -35,9 +29,6 @@ RUN echo '<VirtualHost *:80>\n\
 </VirtualHost>' > /etc/apache2/sites-available/000-default.conf
 
 RUN a2enmod rewrite
-
-RUN php artisan config:clear
-RUN php artisan view:clear
 
 EXPOSE 80
 
