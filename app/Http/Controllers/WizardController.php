@@ -99,7 +99,7 @@ class WizardController extends Controller
         $validated['house_id']=$validated['house'];
         unset($validated['house']);
         Wizard::create($validated);
-        return redirect()->route('wizards',['id'=>$validated['house_id']])->with('success','Sorcerer Enshrined Successfully!!');
+        return redirect()->route('wizards',['id'=>$validated['house_id']])->with('success','Sorcerer Conjured Successfully!!');
     }
 
     public function cast(){
