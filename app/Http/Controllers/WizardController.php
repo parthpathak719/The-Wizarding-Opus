@@ -37,16 +37,16 @@ class WizardController extends Controller
        $wizards=Wizard::where('house_id',$id)->orderBy('name','asc')->with('house')->get();
         return view('wizards',['wizards'=>$wizards]);
     }
-    public function edit($id){
-        $wizard=Wizard::findorFail($id);
+    public function edit($id1,$id2){
+        $wizard=Wizard::findorFail($id1);
         $houses=House::all();
         // Block access if not admin and trying to edit seeded sorcerer
-        if (!session('is_admin') && $id <= 41) {
-            return redirect()->back()->with('success', 'You do not have permission to modify this sorcerer.');
+        if (!session('is_admin') && $id1 <= 41) {
+            return redirect()->route('wizards',['id'=>$id2])->with('success', 'You do not have permission to modify this sorcerer.');
         }
         // Block access if not admin and not the owner of this conjured sorcerer
         if (!session('is_admin') && $wizard->session_id !== session()->getId()) {
-            return redirect()->back()->with('success', 'You can only modify your own sorcerers.');
+            return redirect()->route('wizards',['id'=>$id2])->with('success', 'You can only modify your own sorcerers.');
         }
         return view('edit',['wizard'=>$wizard,'houses'=>$houses]);
     }

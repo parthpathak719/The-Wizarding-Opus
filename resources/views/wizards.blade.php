@@ -49,7 +49,7 @@
 
                 {{-- Edit button --}}
                 @if(session('is_admin') || ($wizard->id > 41 && $wizard->session_id === session()->getId()))
-                    <a href="{{ route('edit',$wizard->id) }}" class="edit-details">Edit</a>
+                    <a href="{{ route('edit',['id1'=>$wizard->id,'id2'=>$house->id]) }}" class="edit-details">Edit</a>
                 @endif
 
                 {{-- Delete button --}}
