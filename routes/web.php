@@ -27,3 +27,8 @@ Route::get('/cast',[WizardController::class,'cast'])->name('cast');
 
 Route::get('/quiz',[WizardController::class,'quiz'])->name('quiz');
 Route::post('/quizAction',[WizardController::class,'quizAction'])->name('quizAction');
+
+// Admin routes
+Route::get('/admin/login', [WizardController::class, 'adminLogin']);
+Route::post('/admin/login', [WizardController::class, 'adminLoginAction']);
+Route::get('/admin/logout', [WizardController::class, 'adminLogout']);

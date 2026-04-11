@@ -21,17 +21,15 @@
         $house = $wizards->first()->house;
     @endphp
 
-   <div id="house-details">
-      <h1 id="house-name">{{ $house->name }}</h1>
-      <div id="founder-box">
-        <span class="label">Founder:</span>
-        <span class="value"><b>{{ $house->founder }}</b></span>
-      </div>
-      <p class="house-description">{{ $house->description }}</p>
+    <div id="house-details">
+        <h1 id="house-name">{{ $house->name }}</h1>
+        <div id="founder-box">
+            <span class="label">Founder:</span>
+            <span class="value"><b>{{ $house->founder }}</b></span>
+        </div>
+        <p class="house-description">{{ $house->description }}</p>
     </div>
 
-
-    {{-- Keep background style inline as per your request --}}
     <style>
         body {
             background: url({{ $house->crest }}) no-repeat center fixed;
@@ -41,16 +39,22 @@
             padding: 0;
         }
     </style>
-    
+
     <div id="wizard-container">
         @foreach ($wizards as $wizard)
             <div class="wizard-card">
                 <img src="{{ $wizard->image }}" alt="{{ $wizard->name }}" class="wizard-image">
                 <p class="wizard-name">{{ $wizard->name }}</p>
                 <a href="{{ route('details',$wizard->id) }}" class="view-details">View Details</a>
-                <a href="{{ route('edit',$wizard->id) }}" class="edit-details">Edit</a>
-                @if ($wizard->id > 41)
-                    <form name="my" id="my" method="post" action="{{ route('destroy',['id1'=>$wizard->id,'id2'=>$house->id]) }}">
+
+                {{-- Edit button --}}
+                @if(session('is_admin') || ($wizard->id > 41 && $wizard->session_id === session()->getId()))
+                    <a href="{{ route('edit',$wizard->id) }}" class="edit-details">Edit</a>
+                @endif
+
+                {{-- Delete button --}}
+                @if($wizard->id > 41 && (session('is_admin') || $wizard->session_id === session()->getId()))
+                    <form method="post" action="{{ route('destroy',['id1'=>$wizard->id,'id2'=>$house->id]) }}">
                         @csrf
                         @method('DELETE')
                         <button type="submit" onclick="return confirm('Delete Sorcerer?')">Delete</button>

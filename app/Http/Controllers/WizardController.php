@@ -40,10 +40,22 @@ class WizardController extends Controller
     public function edit($id){
         $wizard=Wizard::findorFail($id);
         $houses=House::all();
+        // Block access if not admin and trying to edit seeded sorcerer
+        if (!session('is_admin') && $id <= 41) {
+            return redirect()->back()->with('success', 'You do not have permission to modify this sorcerer.');
+        }
+        // Block access if not admin and not the owner of this conjured sorcerer
+        if (!session('is_admin') && $wizard->session_id !== session()->getId()) {
+            return redirect()->back()->with('success', 'You can only modify your own sorcerers.');
+        }
         return view('edit',['wizard'=>$wizard,'houses'=>$houses]);
     }
     public function editAction(Request $request,$id){
         $wizard=Wizard::findorFail($id);
+        // Check if admin or owner
+        if (!session('is_admin') && ($id <= 41 || $wizard->session_id !== session()->getId())) {
+            return redirect()->back()->with('success', 'You do not have permission to modify this sorcerer.');
+        }
         $validated=$request->validate([
             'name'=>['required','string','min:3','max:100',Rule::unique('wizards')->ignore($wizard->id),'regex:/^[a-zA-Z- ]*$/'],
             'type'=>'required|string|min:3|max:100|regex:/^[a-zA-Z- ]*$/',
@@ -67,6 +79,9 @@ class WizardController extends Controller
             return redirect()->back()->with('success', 'This sorcerer cannot be deleted.');
         }
         $wizard=Wizard::findorFail($id1);
+        if (!session('is_admin') && $wizard->session_id !== session()->getId()) {
+            return redirect()->back()->with('success', 'You can only delete your own sorcerers.');
+        }
         $wizard->delete();
         return redirect()->route('wizards',['id'=>$id2])->with('success','Sorcerer Deleted Successfully!!');
     }
@@ -98,6 +113,7 @@ class WizardController extends Controller
         ]);
         $validated['house_id']=$validated['house'];
         unset($validated['house']);
+        $validated['session_id']=session()->getId();
         Wizard::create($validated);
         return redirect()->route('wizards',['id'=>$validated['house_id']])->with('success','Sorcerer Conjured Successfully!!');
     }
@@ -133,5 +149,23 @@ class WizardController extends Controller
         }
 
         return view('quizAction', ['score'=>$score,'total'=>$total,'results'=>$results]);
+    }
+
+    public function adminLogin(){
+        return view('admin-login');
+    }
+
+    public function adminLoginAction(Request $request){
+        $password = env('ADMIN_PASSWORD');
+        if($request->password === $password){
+            session(['is_admin' => true]);
+            return redirect()->route('houses');
+        }
+        return back()->with('error', 'Wrong password');
+    }
+
+    public function adminLogout(){
+        session()->forget('is_admin');
+        return redirect()->route('houses');
     }
 }
