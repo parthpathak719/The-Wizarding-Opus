@@ -48,15 +48,39 @@ wallVideo.addEventListener('timeupdate', function() {
 // Click gothrough to run animation
 gothrough.addEventListener('click', function() {
     sound.play();
-    wallVideo.classList.add('run-to-wall');
     gothrough.style.display = 'none';
-    wallVideo.muted = true;
-});
 
-// When run animation ends → blackout & redirect
-wallVideo.addEventListener('animationend', function() {
-    blackout.classList.add('show');
+    const canvas = document.createElement('canvas');
+    canvas.width = wallVideo.videoWidth;
+    canvas.height = wallVideo.videoHeight;
+    const ctx = canvas.getContext('2d');
+    ctx.drawImage(wallVideo, 0, 0, canvas.width, canvas.height);
+    const frameUrl = canvas.toDataURL();
+
+    const zoomDiv = document.createElement('div');
+    zoomDiv.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: url(${frameUrl}) center center / contain no-repeat;
+        background-color: black;
+        z-index: 999;
+        transform: scale(1);
+        transform-origin: center center;
+        animation: zoomRun 2.2s ease-in forwards;
+    `;
+
+    // Append BEFORE hiding the video — no visual gap
+    document.body.appendChild(zoomDiv);
+    wallVideo.style.display = 'none';
+
     setTimeout(() => {
-        window.location.href = "/kingcross"; // Change to your target page
-    }, 1000);
+        blackout.classList.add('show');
+    }, 1900);
+
+    setTimeout(() => {
+        window.location.href = "/kingcross";
+    }, 2300);
 });
