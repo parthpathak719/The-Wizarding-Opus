@@ -20,13 +20,16 @@ The Wizarding Opus is a dynamic Laravel-based web application featuring an immer
 
 ## 🛠️ Tech Stack
 
-- **Laravel 12** — PHP web framework
-- **PostgreSQL (Supabase)** — Cloud database
-- **Bunny.net** — CDN for video and audio streaming
-- **Cloudinary** — Image hosting
-- **Render** — App hosting and deployment
-- **Vite + Tailwind CSS** — Frontend build tooling
-- **Vanilla JavaScript** — Cinematic interactions and animations
+- **Laravel 12** - PHP web framework
+- **Blade** - Templating engine
+- **PostgreSQL (Supabase)** - Cloud database
+- **GeminiPro** - AI-generated videos
+- **Bunny.net** - CDN for video and audio streaming
+- **Cloudinary** - Image hosting
+- **Render** - App hosting and deployment
+- **XAMPP** - Local development environment
+- **CSS** - Styling and animations
+- **JavaScript** - Cinematic interactions and animations
 
 ---
 
@@ -41,6 +44,7 @@ The Wizarding Opus is a dynamic Laravel-based web application featuring an immer
 | Houses | Browse the four Hogwarts houses |
 | Sorcerers | View, add, edit and delete sorcerers |
 | Conjure | Add your own sorcerer to the archives |
+| Cast | Meet the magical cast of Harry Potter |
 | Quiz | Test your Harry Potter knowledge |
 
 ---
@@ -55,6 +59,6 @@ The Wizarding Opus is a dynamic Laravel-based web application featuring an immer
 
 ## 🚀 Deployment
 
-- App hosted on **Render** (free tier)
-- Database hosted on **Supabase** PostgreSQL (free tier)
+- App hosted on **Render**
+- Database hosted on **Supabase** PostgreSQL
 - Media served via **Bunny.net** CDN with allowed domain restrictions
