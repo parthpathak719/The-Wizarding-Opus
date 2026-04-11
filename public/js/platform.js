@@ -52,9 +52,10 @@ gothrough.addEventListener('click', function() {
 
     // Bunny Stream provides thumbnails at this URL — no CORS issue
     const videoId = 'd46f4e5b-7743-40dd-99ed-14f661bff17d';
-    const thumbnailUrl = `https://vz-4ff4d85b-386.b-cdn.net/${videoId}/thumbnail.jpg?time=7`;
-
+    const time = Math.floor(wallVideo.currentTime);
+    const thumbnailUrl = `https://vz-4ff4d85b-386.b-cdn.net/${videoId}/thumbnail.jpg?time=${time}`;
     const zoomDiv = document.createElement('div');
+    
     zoomDiv.style.cssText = `
         position: fixed;
         top: 0;
