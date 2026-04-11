@@ -50,20 +50,11 @@ gothrough.addEventListener('click', function() {
     sound.play();
     gothrough.style.display = 'none';
 
-    // Swap to 240p — much lighter to scale on GPU
-    const currentTime = wallVideo.currentTime;
-    wallVideo.src = 'https://vz-4ff4d85b-386.b-cdn.net/d46f4e5b-7743-40dd-99ed-14f661bff17d/play_240p.mp4';
-    wallVideo.load();
-    wallVideo.currentTime = currentTime;
+    // Force GPU compositing layer before animation
+    wallVideo.style.transform = 'translate3d(-50%, -50%, 0) scale(1)';
+    wallVideo.getBoundingClientRect(); // flush reflow
 
-    // Wait for seek to be ready then animate
-    wallVideo.addEventListener('seeked', function onSeeked() {
-        wallVideo.removeEventListener('seeked', onSeeked);
-
-        wallVideo.style.transform = 'translate3d(-50%, -50%, 0) scale(1)';
-        wallVideo.getBoundingClientRect();
-        wallVideo.classList.add('run-to-wall');
-    });
+    wallVideo.classList.add('run-to-wall');
 
     setTimeout(() => {
         blackout.classList.add('show');
