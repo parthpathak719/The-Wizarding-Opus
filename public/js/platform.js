@@ -50,28 +50,11 @@ gothrough.addEventListener('click', function() {
     sound.play();
     gothrough.style.display = 'none';
 
-    // Bunny Stream provides thumbnails at this URL — no CORS issue
-    const videoId = 'd46f4e5b-7743-40dd-99ed-14f661bff17d';
-    const time = Math.floor(wallVideo.currentTime);
-    const thumbnailUrl = `https://vz-4ff4d85b-386.b-cdn.net/${videoId}/thumbnail.jpg?time=${time}`;
-    const zoomDiv = document.createElement('div');
-    
-    zoomDiv.style.cssText = `
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        background: url(${thumbnailUrl}) center center / contain no-repeat;
-        background-color: black;
-        z-index: 999;
-        transform: scale(1);
-        transform-origin: center center;
-        animation: zoomRun 2.2s ease-in forwards;
-    `;
+    // Force GPU compositing layer before animation
+    wallVideo.style.transform = 'translate3d(-50%, -50%, 0) scale(1)';
+    wallVideo.getBoundingClientRect(); // flush reflow
 
-    document.body.appendChild(zoomDiv);
-    wallVideo.style.display = 'none';
+    wallVideo.classList.add('run-to-wall');
 
     setTimeout(() => {
         blackout.classList.add('show');

@@ -101,6 +101,8 @@
     object-fit: contain;
     z-index: 50;
     background-color: black;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
 }
 
 .scene {
@@ -214,9 +216,15 @@
 }
 
 /* Running effect */
+.run-to-wall {
+    animation: zoomRun 2.2s ease-in forwards !important;
+    will-change: transform;
+    z-index: 999 !important;
+}
+
 @keyframes zoomRun {
-    0% { transform: scale(1); }
-    100% { transform: scale(15); }
+    0%   { transform: translate3d(-50%, -50%, 0) scale(1); }
+    100% { transform: translate3d(-50%, -50%, 0) scale(15); }
 }
 
 /* Blackout screen */
