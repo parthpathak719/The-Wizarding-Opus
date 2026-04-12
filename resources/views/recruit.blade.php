@@ -26,6 +26,7 @@
                 <span id="close3" onclick="document.getElementById('id03').style.display='none';">&times;</span>
                 <h1>Welcome To Conjure!!</h1>
                 <p>Fill Out The Form To "Conjure" A Sorcerer</p>
+                You can conjure yourself as well...
             </div>
         </div>
     @endif
