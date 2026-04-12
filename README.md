@@ -33,6 +33,15 @@ The Wizarding Opus is a dynamic Laravel-based web application featuring an immer
 
 ---
 
+## 🧰 Tools Used
+- **Remove.bg / HuggingFace AnimeMagicCut** - Background removal for images
+- **Fotor** - Image editing and enhancement
+- **Favicon.io** - Favicon generation
+- **HandBrake** - Video and audio compression
+- **Clipchamp** - Video and audio editing
+
+---
+
 ## 📄 Pages
 
 | Page | Description |
