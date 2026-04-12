@@ -13,12 +13,14 @@
         <div class="modal2" id="id02">
             <div id="modal-content2">
                 <span id="close2" onclick="document.getElementById('id02').style.display='none'">&times;</span>
-                {{ session('success') }}
+                {!! session('success') !!}
             </div>
         </div>
     @endif
     @php
         $house = $wizards->first()->house;
+        $canon = $wizards->where('id', '<=', 41);
+        $community = $wizards->where('id', '>', 41);
     @endphp
 
     <div id="house-details">
@@ -30,29 +32,16 @@
         <p class="house-description">{{ $house->description }}</p>
     </div>
 
-    <style>
-        body {
-            background: url({{ $house->crest }}) no-repeat center fixed;
-            background-size: cover;
-            background-attachment: fixed;
-            margin: 0;
-            padding: 0;
-        }
-    </style>
-
+    {{-- Canon Sorcerers --}}
     <div id="wizard-container">
-        @foreach ($wizards as $wizard)
-            <div class="wizard-card">
+        @foreach ($canon as $wizard)
+            <div class="wizard-card card-canon">
                 <img src="{{ $wizard->image }}" alt="{{ $wizard->name }}" class="wizard-image">
                 <p class="wizard-name">{{ $wizard->name }}</p>
                 <a href="{{ route('details',$wizard->id) }}" class="view-details">View Details</a>
-
-                {{-- Edit button --}}
                 @if(session('is_admin') || ($wizard->id > 41 && $wizard->session_id === session()->getId()))
                     <a href="{{ route('edit',['id1'=>$wizard->id,'id2'=>$house->id]) }}" class="edit-details">Edit</a>
                 @endif
-
-                {{-- Delete button --}}
                 @if($wizard->id > 41 && (session('is_admin') || $wizard->session_id === session()->getId()))
                     <form method="post" action="{{ route('destroy',['id1'=>$wizard->id,'id2'=>$house->id]) }}">
                         @csrf
@@ -63,4 +52,38 @@
             </div>
         @endforeach
     </div>
+
+    {{-- Community Sorcerers --}}
+    @if($community->count() > 0)
+        <h2 class="section-title">🔮 Community Conjured</h2>
+        <div id="wizard-container">
+            @foreach ($community as $wizard)
+                <div class="wizard-card card-community">
+                    <img src="{{ $wizard->image }}" alt="{{ $wizard->name }}" class="wizard-image">
+                    <p class="wizard-name">{{ $wizard->name }}</p>
+                    <a href="{{ route('details',$wizard->id) }}" class="view-details">View Details</a>
+                    @if(session('is_admin') || $wizard->session_id === session()->getId())
+                        <a href="{{ route('edit',['id1'=>$wizard->id,'id2'=>$house->id]) }}" class="edit-details">Edit</a>
+                    @endif
+                    @if(session('is_admin') || $wizard->session_id === session()->getId())
+                        <form method="post" action="{{ route('destroy',['id1'=>$wizard->id,'id2'=>$house->id]) }}">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" onclick="return confirm('Delete Sorcerer?')">Delete</button>
+                        </form>
+                    @endif
+                </div>
+            @endforeach
+        </div>
+    @endif
+
+    <style>
+        body {
+            background: url({{ $house->crest }}) no-repeat center fixed;
+            background-size: cover;
+            background-attachment: fixed;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
 </x-layout>
