@@ -133,7 +133,7 @@ class WizardSeeder extends Seeder
                 "title"=>"Hufflepuff Quidditch Captain and Seeker, Prefect, Triwizard Champion",
                 "bio"=>"Cedric Diggory is known for his fairness, bravery, and kindness, as exemplified in his interactions with Harry Potter. Key quotes highlight his helpfulness, like suggesting Harry use the Prefects' bathroom to solve the clue and his insistence on an even playing field for the Triwizard Tournament. He also shows remarkable courage in the face of danger, notably when he stands his ground against Voldemort.",
                 "image"=>"https://i.pinimg.com/736x/36/e2/fe/36e2fe588e25d5a392833511e4f2380a.jpg",
-                "background_image"=>"https://media1.popsugar-assets.com/files/thumbor/v3WvhJat93TG9OajKWgVVo0t6Ls=/fit-in/1584x1056/top/filters:format_auto():upscale()/2020/10/01/768/n/1922283/tmp_BIQ7pe_e3916a967d1e52af_MCDHAPO_EC470.jpg"
+                "background_image"=>"https://i.pinimg.com/736x/9f/91/02/9f9102f80aa8caab04bcbb77e138e81f.jpg"
             ],
 
             [
@@ -257,7 +257,7 @@ class WizardSeeder extends Seeder
                 "bio" => "Ginny Weasley, the youngest of the Weasley siblings and the only daughter, is known for her fierce independence and powerful hexes. A skilled Quidditch player, she went on to play professionally for the Holyhead Harpies and later became a journalist. Ginny played an active role in Dumbledore's Army and fought in the Battle of Hogwarts.",
                 "quote" => "'The thing about growing up with Fred and George is that you sort of start thinking everything's possible if you've got enough nerve'",
                 "image" => "https://i.pinimg.com/1200x/78/bf/b8/78bfb845b80b0c3d9274d03f68fcaf9d.jpg",
-                "background_image" => "https://w0.peakpx.com/wallpaper/148/901/HD-wallpaper-ginny-blood-bonnie-half-harry-potter-prince-weasley-wright.jpg"
+                "background_image" => "https://i.pinimg.com/736x/fb/f3/7c/fbf37c155d8795e164dde6be9c56df5a.jpg"
             ],
 
             [
@@ -300,7 +300,7 @@ class WizardSeeder extends Seeder
                "bio" => "Horace Eugene Slughorn is a talented potioneer and former Head of Slytherin House. Known for cultivating a 'Slug Club' of promising students, he values connections and influence. Though initially reluctant, he returned to Hogwarts to fight in the Battle of Hogwarts and stood against Voldemort. He also helped in discovering the most important clue to defeat Voldemort known as 'Horcrux'",
                "quote" => "'I taught the whole Black family, except Sirius, who was a serious disappointment.'",
                "image" => "https://i.pinimg.com/736x/34/fe/d7/34fed7c38ab56d60182bc3a3dde9e1c3.jpg",
-               "background_image" => "https://w0.peakpx.com/wallpaper/252/483/HD-wallpaper-harry-potter-movie-harry-potter-and-the-half-blood-prince-horace-slughorn.jpg"
+               "background_image" => "https://i.pinimg.com/1200x/f2/ee/5a/f2ee5aa356f0deb7f8d590e36cad0973.jpg"
             ],
 
             [
@@ -353,7 +353,7 @@ class WizardSeeder extends Seeder
                "title" => "The Dark Lord, He-Who-Must-Not-Be-Named, You-Know-Who, The Heir of Slytherin",
                "bio" => "Lord Voldemort, born Tom Marvolo Riddle, was the most feared Dark wizard in history. A brilliant but emotionally detached student at Hogwarts and the last known descendant of Salazar Slytherin, he became obsessed with immortality, power, and blood purity. To escape death, he split his soul into seven Horcruxes — a twisted form of dark magic. He led the Death Eaters and launched a brutal crusade to purify the wizarding world of Muggle-borns. His first rise to power ended when he failed to kill infant Harry Potter, which left him powerless for over a decade. Voldemort returned to power during the Second Wizarding War, spreading terror and death across Britain. Despite his strength, he was ultimately defeated by Harry, as he could never grasp the power of love, loyalty, and self-sacrifice — the very things that made him vulnerable.",
                "quote" => "'I, who have gone further than anybody along the path that leads to immortality.' 'AVADA KEDAVRA!!'",
-               "image" => "https://upload.wikimedia.org/wikipedia/en/a/a3/Lordvoldemort.jpg",
+               "image" => "https://i.pinimg.com/736x/9a/55/20/9a5520dd2e6f2b7bad0c7feb950b57cb.jpg",
                "background_image" => "https://i.pinimg.com/736x/45/37/cb/4537cbb9b9517d1d0d116550125942c7.jpg",
                "theme_song"=>"https://www.youtube.com/shorts/BmpFwKcbYGc?feature=share"
             ],
