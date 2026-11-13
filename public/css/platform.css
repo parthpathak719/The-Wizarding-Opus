@@ -91,11 +91,21 @@
     background-color: black;
 }
 
-#wall-video {
+#wall-viewport {
     position: fixed;
+    inset: 0;
+    overflow: hidden;
+    contain: paint;
+    pointer-events: none;
+    z-index: 50;
+}
+
+#wall-video,
+#wall-zoom {
+    position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate3d(-50%, -50%, 0) scale(1);
     height: 100vh;
     width: 100vw;
     object-fit: contain;
@@ -104,6 +114,8 @@
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
 }
+
+#wall-zoom { display: none; }
 
 .scene {
     position: relative;
@@ -116,8 +128,9 @@
     display: none;
     position: absolute;
     bottom: 48px;
-    left: 48%;
+    left: 50%;
     transform: translateX(-50%);
+    transform-origin: center;
     border: 2px solid rgba(200, 170, 50, 0.7);
     box-shadow: 0 0 35px rgba(200, 170, 50, 0.6);
     width: 195px;
@@ -125,15 +138,31 @@
     z-index: 10;
     cursor: pointer;
     transition: transform 0.3s ease;
+    animation: ticketReveal 0.65s cubic-bezier(0.22, 1, 0.36, 1);
 }
 #ticket:hover { transform: translateX(-50%) scale(1.1); }
+
+@keyframes ticketReveal {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) scale(0.15);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(-50%) scale(1);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #ticket { animation: none; }
+}
 
 /* "Click Me!" label */
 .arrow-label {
     display: none;
     position: absolute;
     bottom: 170px;
-    left: 48%;
+    left: 50%;
     transform: translateX(-50%);
     color: white;
     font-weight: bold;
@@ -218,7 +247,6 @@
 /* Running effect */
 .run-to-wall {
     animation: zoomRun 2.2s ease-in forwards !important;
-    will-change: transform;
     z-index: 999 !important;
 }
 

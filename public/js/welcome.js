@@ -3,6 +3,9 @@ const flap = document.getElementById('flap');
 const letterContainer = document.getElementById('letter-container');
 const letterText = document.getElementById('letter-text');
 const music = document.getElementById('themeMusic');
+const skipLetter = document.getElementById('skip-letter');
+const writingSound = document.getElementById('writingSound');
+let typingTimer;
 
 const message = `
 <h1 style='text-align:center;'><b>Welcome To "The Wizarding Opus"!!</b></h1>
@@ -32,25 +35,37 @@ envelope.addEventListener('click', () => {
         envelope.style.display = 'none';
         letterContainer.style.display = 'flex';
         letterContainer.classList.add('show');
-        music.play();
+        music.play().catch(() => {});
+        skipLetter.hidden = false;
         typeMessage(message);
     }, 1000); // match duration with animation
+}, { once: true });
+
+function finishLetter() {
+    clearTimeout(typingTimer);
+    letterText.innerHTML = message;
+    writingSound.pause();
+    writingSound.currentTime = 0;
+    skipLetter.hidden = true;
+}
+
+skipLetter.addEventListener('click', () => {
+    finishLetter();
+    letterText.querySelector('a').focus();
 });
 
 function typeMessage(text) {
     let i = 0;
     let buffer = '';
     const speed = 30;
-    const writingSound=document.getElementById('writingSound');
 
     writingSound.loop=true;
-    writingSound.play();
+    writingSound.play().catch(() => {});
     writingSound.currentTime=0;
             
     function type() {
         if (i >= text.length) {
-            writingSound.pause();
-            writingSound.currentTime=0;
+            finishLetter();
             return;
         }
         // If it's an HTML tag, read full tag and append to buffer
@@ -69,7 +84,7 @@ function typeMessage(text) {
         }
                 
         letterText.innerHTML = buffer;
-        setTimeout(type, speed);
+        typingTimer = setTimeout(type, speed);
     }
     type();
 }

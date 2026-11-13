@@ -27,9 +27,12 @@
 
         <img id="ticket" src="https://res.cloudinary.com/dd4ldehqo/image/upload/v1754752509/ticket2_1_myw42l.jpg" alt="Train Ticket">
 
-        <video id="wall-video" muted preload="auto">
-            <source src="https://vz-4ff4d85b-386.b-cdn.net/d46f4e5b-7743-40dd-99ed-14f661bff17d/play_1080p.mp4" type="video/mp4">
-        </video>
+        <div id="wall-viewport">
+            <video id="wall-video" muted preload="auto">
+                <source src="https://vz-4ff4d85b-386.b-cdn.net/d46f4e5b-7743-40dd-99ed-14f661bff17d/play_1080p.mp4" type="video/mp4">
+            </video>
+            <canvas id="wall-zoom" aria-hidden="true"></canvas>
+        </div>
 
         <div class="go-through">
             <p>Go Through Here</p>

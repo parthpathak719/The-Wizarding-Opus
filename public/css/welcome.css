@@ -62,6 +62,30 @@ body {
 }
 
 /* Letter */
+#skip-letter {
+    position: absolute;
+    top: 32px;
+    right: 32px;
+    padding: 6px 8px;
+    border: 0;
+    background: transparent;
+    color: #6b4b24;
+    font: 18px 'Dancing Script', cursive;
+    cursor: pointer;
+}
+
+#skip-letter:hover,
+#skip-letter:focus-visible {
+    color: #2b1700;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+#skip-letter:focus-visible {
+    outline: 1px dashed #6b4b24;
+    outline-offset: 3px;
+}
+
 #letter-container {
     display: none;
     justify-content: center;

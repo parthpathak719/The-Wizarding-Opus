@@ -17,6 +17,7 @@
 
         <!-- Letter -->
         <div id="letter-container">
+            <button id="skip-letter" type="button" aria-controls="letter-text" hidden>Skip typing</button>
             <div id="letter-scroll">
                 <p id="letter-text"></p>
             </div>
